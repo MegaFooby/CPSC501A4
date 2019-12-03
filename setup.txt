@@ -1,0 +1,20 @@
+CREATE VIRTUAL ENVIRONMENT (do once)
+python3 -m venv env
+
+ACTIVATE YOUR VIRTUAL ENVIRONMENT
+source env/bin/activate         OR    source env/bin/activate.csh   (this second likely your default shell system)
+
+INSTALL PACKAGES (do once)
+pip install numpy
+pip install matplotlib
+pip install Pillow
+pip install pyscreenshot
+pip install tensorflow
+
+CHECK IF YOU ARE IN YOUR VIRTUAL ENV (should also see [env] in shell)
+which python
+
+PROGRAM AND RUN YOUR CODE
+
+EXIT VIRTUAL ENVIRONMENT
+deactivate
