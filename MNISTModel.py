@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 
 print("--Get data--")
 mnist = tf.keras.datasets.mnist
@@ -11,13 +12,13 @@ print("--Make model--")
 model = tf.keras.models.Sequential([
   tf.keras.layers.Flatten(input_shape=(28, 28)),
   tf.keras.layers.Dense(128, activation='relu'),
-  tf.keras.layers.Dense(64, activation='tanh'),
+  tf.keras.layers.Dense(64, activation='relu'),
   tf.keras.layers.Dense(10, activation='softmax')
 ])
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 print("--Fit model--")
-model.fit(x_train, y_train, epochs=5, verbose=2)
+model.fit(x_train, y_train, epochs=10, verbose=2)
 
 print("--Evaluate model--")
 model_loss, model_acc = model.evaluate(x_test,  y_test, verbose=2)
