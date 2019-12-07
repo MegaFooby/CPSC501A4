@@ -7,6 +7,7 @@
 
 import tensorflow as tf
 import numpy as np
+import matplotlib.pyplot as plt
 
 print("--Get data--")
 with np.load("notMNIST.npz", allow_pickle=True) as f:
@@ -30,6 +31,16 @@ model = tf.keras.models.Sequential([
 ])
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
+img = plt.imread('image.png')
+if np.amax(img.flatten()) > 1:
+    img = img/255
+img = 1 - img
+
+x_train = np.concatenate((x_train, [img]))
+y_train = np.append(y_train, 1)
+
+#print(y_train)
+
 print("--Fit model--")
 model.fit(x_train, y_train, epochs=5, verbose=2)
 
@@ -38,4 +49,4 @@ model_loss, model_acc = model.evaluate(x_test,  y_test, verbose=2)
 print(f"Model Loss:    {model_loss:.2f}")
 print(f"Model Accuray: {model_acc*100:.1f}%")
 
-model.save('notMNIST.h5')
+model.save('notMNISTModified.h5')
